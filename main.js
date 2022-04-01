@@ -1,42 +1,23 @@
 var express = require('express')
 var app = express()
-var template = require('./lib/template');
-var db = require('./lib/db');
 var topic = require('./lib/topic');
-var url = require('url');
-var path = require('path');
+// var template = require('./lib/template');
+// var db = require('./lib/db');
+// var url = require('url');
+// var path = require('path');
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
 
 app.get('/', function(request, response) {
   topic.home(request, response);
-  // return request.send('Hello World!')
 });
 
 app.get('/page/:pageId', function(request, response) {
   topic.page(request, response);
-  // var _url = request.url;
-  // var queryData = url.parse(_url, true).query;
-  // var queryData = path.parse(request.params.pageId).base;
-
-  // console.log(_url);
-  // console.log(queryData);
-  // console.log(queryData);
-  // console.log(request.url);
-  // return response.send(request.params);
 });
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!');
 })
-
-
-// if(queryData.id === undefined) {
-//   topic.home(request, response);
-// } else {
-  // topic.page(request, response);
 
 
 /*
