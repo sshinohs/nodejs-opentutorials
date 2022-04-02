@@ -8,10 +8,7 @@ var compression = require('compression');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
-// var template = require('./lib/template');
-// var db = require('./lib/db');
-// var url = require('url');
-// var path = require('path');
+app.use(express.static('public'));
 
 
 app.get('/', function(request, response) {
