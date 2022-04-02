@@ -1,6 +1,8 @@
-var express = require('express')
+var express = require('express');
+const { authorSelect } = require('./lib/template');
 var app = express()
 var topic = require('./lib/topic');
+var author = require('./lib/author');
 // var template = require('./lib/template');
 // var db = require('./lib/db');
 // var url = require('url');
@@ -13,6 +15,46 @@ app.get('/', function(request, response) {
 
 app.get('/page/:pageId', function(request, response) {
   topic.page(request, response);
+});
+
+app.get('/create', function(request, response) {
+  topic.create(request, response);
+});
+
+app.post('/create_process', function(request, response) {
+  topic.create_process(request,response);
+});
+
+app.get('/update/:pageId', function(request, response) {
+  topic.update(request, response);
+});
+
+app.post('/update_process', function(request, response) {
+  topic.update_process(request, response);
+});
+
+app.post('/delete_process', function(request, response) {
+  topic.delete_process(request, response);
+});
+
+app.get('/author', function(request, response) {
+  author.home(request,response);
+});
+
+app.post('/author/create_process', function(request, response) {
+  author.create_process(request, response);
+});
+
+app.get('/author/update/:authorId', function(request, response) {
+  author.update(request,response);
+});
+
+app.post('/author/update_process', function(request, response) {
+  author.update_process(request, response);
+});
+
+app.post('/author/delete_process', function(request, response) {
+  author.delete_process(request, response);
 });
 
 app.listen(3000, function() {
