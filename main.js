@@ -6,16 +6,15 @@ var author = require('./lib/author');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var topicRouter = require('./routes/topic');
+var indexRouter = require('./routes/index');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.use(express.static('public'));
+app.use('/', indexRouter);
 app.use('/topic', topicRouter);
 
 
-app.get('/', function(request, response) {
-  topic.home(request, response);
-});
 
 app.get('/author', function(request, response) {
   author.home(request,response);
