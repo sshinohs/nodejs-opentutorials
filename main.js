@@ -5,38 +5,16 @@ var topic = require('./lib/topic');
 var author = require('./lib/author');
 var bodyParser = require('body-parser');
 var compression = require('compression');
+var topicRouter = require('./routes/topic');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.use(express.static('public'));
+app.use('/topic', topicRouter);
 
 
 app.get('/', function(request, response) {
   topic.home(request, response);
-});
-
-app.get('/page/:pageId', function(request, response) {
-  topic.page(request, response);
-});
-
-app.get('/create', function(request, response) {
-  topic.create(request, response);
-});
-
-app.post('/create_process', function(request, response) {
-  topic.create_process(request,response);
-});
-
-app.get('/update/:pageId', function(request, response) {
-  topic.update(request, response);
-});
-
-app.post('/update_process', function(request, response) {
-  topic.update_process(request, response);
-});
-
-app.post('/delete_process', function(request, response) {
-  topic.delete_process(request, response);
 });
 
 app.get('/author', function(request, response) {
@@ -57,6 +35,10 @@ app.post('/author/update_process', function(request, response) {
 
 app.post('/author/delete_process', function(request, response) {
   author.delete_process(request, response);
+});
+
+app.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
 });
 
 app.listen(3000, function() {
