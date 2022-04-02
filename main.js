@@ -3,6 +3,9 @@ const { authorSelect } = require('./lib/template');
 var app = express()
 var topic = require('./lib/topic');
 var author = require('./lib/author');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 // var template = require('./lib/template');
 // var db = require('./lib/db');
 // var url = require('url');
